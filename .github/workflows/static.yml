@@ -5,12 +5,10 @@ on:
     branches: ["main"]
   workflow_dispatch:
 
-# FORCING MASTER PERMISSIONS
 permissions:
-  contents: write
+  contents: read
   pages: write
   id-token: write
-  actions: write
 
 concurrency:
   group: "pages"
