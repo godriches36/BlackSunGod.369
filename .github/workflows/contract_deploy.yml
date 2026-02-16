@@ -27,6 +27,6 @@ jobs:
         env:
           PRIVATE_KEY: ${{ secrets.WORLD_LEADER_PRIVATE_KEY }}
           ETH_RPC: ${{ secrets.SOVEREIGN_RPC }}
-          PLATFORM_API_KEY: ${{ secrets.CHAINSTACK_PLATFORM_API_KEY }}
         run: |
+          # Connecting via Chainstack Execution Endpoint
           npx hardhat run scripts/deploy_vault.js --network mainnet
