@@ -1,0 +1,17 @@
+{
+  "name": "anbsn-sovereign-organism",
+  "version": "0.0.7",
+  "description": "The Financial Inversion Engine for the 1 Trillion Naira Frequency",
+  "main": "scripts/BlackSunInjector.js",
+  "scripts": {
+    "deploy": "npx hardhat run scripts/deploy.js --network mainnet",
+    "build": "echo 'Sovereign Build Initiated'"
+  },
+  "dependencies": {
+    "ethers": "^5.7.2",
+    "@openzeppelin/contracts": "^5.0.0",
+    "hardhat": "^2.19.0"
+  },
+  "author": "0.0.7 World Leader",
+  "license": "Sovereign"
+}
