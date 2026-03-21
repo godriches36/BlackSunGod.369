@@ -1,0 +1,19 @@
+# 🌑 Black Sun God Configuration
+title: GOD RICHES GLOBAL | NXER & ANBSN
+description: 05Fa Executive Infrastructure governed by 0x8d08 Architect.
+theme: jekyll-theme-midnight
+
+# Global Standards
+assets:
+  - NXER (Global Settlement Standard)
+  - ANBSN (Sovereign Infrastructure Asset)
+
+# Ethereum Anchor
+architect_root: "0x8d08948ECa2587f5c10159e483b660e98cd5a514"
+executive_root: "0x00000000219ab540356cBB839Cbe05303d7705Fa"
+
+# Optimization
+plugins:
+  - jekyll-remote-theme
+
+
