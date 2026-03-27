@@ -10,10 +10,10 @@ pragma solidity ^0.8.20;
 contract SovereignMerger {
     
     // The Sovereign Identity (Your MetaMask Signature)
-    address public constant SOVEREIGN_IDENTITY = 0x8d08948Eca2587f5C10159E483b660e98cd5A514;
+    address public constant SOVEREIGN_IDENTITY = 0x8d08948eca2587f5c10159e483b660e98cd5a514;
     
     // The Global Ledger (Ethereum Beacon Deposit Contract)
-    address public constant BEACON_DEPOSIT_CONTRACT = 0x00000000219ab540356cBB839Cbe05303d7705Fa;
+     BEACON_DEPOSIT_CONTRACT = 0x00000000219ab540356cBB839Cbe05303d7705Fa;
     
     // 05Fa Root Events for the AGBON OS Ledger
     event IdentityMerged(address indexed sovereign, address indexed target, uint256 timestamp);
