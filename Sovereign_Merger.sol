@@ -3,50 +3,54 @@ pragma solidity ^0.8.20;
 
 /**
  * @title Sovereign Merger Protocol (ANBSN OS)
- * @dev Connects Signature 0x8d08...a514 to Beacon Contract 0x0000...05Fa
- * Authority: Agbon Kingdom & The Code Made Flesh.
+ * @author Agbon Kingdom Architect
+ * @dev Unified Architecture: Signature 0x8d08 and Beacon Root 05Fa.
  * This contract establishes the 1.25T Naira Frequency on the Global Ledger.
  */
 contract SovereignMerger {
     
-    // The Sovereign Identity (Your MetaMask Signature)
-    address public constant SOVEREIGN_IDENTITY = 0x8d08948eca2587f5c10159e483b660e98cd5a514;
+    // --- UNIFIED SOVEREIGN IDENTIFIERS ---
+    // Single-line declarations to prevent redeclaration errors in the compiler.
+    address public constant SOVEREIGN_IDENTITY = 0x8d08948Eca2587f5C10159E483b660e98cd5A514;
+    address public constant BEACON_ROOT_05FA = 0x00000000219ab540356cBB839Cbe05303d7705Fa;
     
-    // The Global Ledger (Ethereum Beacon Deposit Contract)
-     BEACON_DEPOSIT_CONTRACT = 0x00000000219ab540356cBB839Cbe05303d7705Fa;
-    
-    // 05Fa Root Events for the AGBON OS Ledger
-    event IdentityMerged(address indexed sovereign, address indexed target, uint256 timestamp);
-    event TransactionVerified(uint256 indexed txId, uint256 amount);
+    // Pulse Events for the Agbon OS Ledger
+    event IdentityMerged(address indexed sovereign, address indexed beacon, uint256 timestamp);
+    event RecallFrequencySet(uint256 amount);
 
-    // SECURITY: Only the Architect (0x8d08) can trigger these commands.
+    // SECURITY: The "Sovereign Wall" - Only the 0x8d08 signature can pass.
     modifier onlySovereign() {
-        require(msg.sender == SOVEREIGN_IDENTITY, "Access Denied: Not the Sovereign Owner");
+        require(msg.sender == SOVEREIGN_IDENTITY, "Access Denied: Not the Sovereign Architect");
         _;
     }
 
     /**
-     * @dev Maps the 747,396 transactions as part of the unified sovereign domain.
-     * This establishes the "Working as 1" rule for the network.
+     * @dev Synchronizes the 747,396 transactions with the 1.25T Naira Frequency.
+     * This establishes the "Working as 1" rule for the 05Fa Root.
      */
-    function verifyTransactionSet(uint256 totalTxCount) external onlySovereign {
-        // Proof of historical load for the ANBSN OS.
-        require(totalTxCount >= 747396, "Incomplete Transaction Set");
-        emit IdentityMerged(SOVEREIGN_IDENTITY, BEACON_DEPOSIT_CONTRACT, block.timestamp);
+    function syncSovereignFrequency(uint256 totalTxCount) external onlySovereign {
+        // Validation of the 747,396 transaction set requirement.
+        require(totalTxCount >= 747396, "Incomplete Transaction Set for Recall");
+        
+        // Emitting the merger event between the identity and the root beacon.
+        emit IdentityMerged(SOVEREIGN_IDENTITY, BEACON_ROOT_05FA, block.timestamp);
+        
+        // Setting the frequency for the 1.25T Naira Recall.
+        emit RecallFrequencySet(1250000000000);
     }
 
     /**
      * @dev Returns the net worth representation of the merged domain.
-     * This tells the AGBON OS to treat the Beacon Balance as the Sovereign's Balance.
+     * Instructs the OS to treat the Beacon Balance as the Sovereign's Balance.
      */
     function getMergedPortfolioValue() external view returns (uint256) {
-        return BEACON_DEPOSIT_CONTRACT.balance;
+        return BEACON_ROOT_05FA.balance;
     }
 
     /**
-     * @dev Returns the current status of the 05Fa Root Handshake.
+     * @dev Current status of the 05Fa Handshake.
      */
-    function getRootStatus() external pure returns (string memory) {
-        return "SOVEREIGN_RECALL_ACTIVE";
+    function getSystemStatus() external pure returns (string memory) {
+        return "OS_AGBON_SOVEREIGN_ACTIVE";
     }
 }
