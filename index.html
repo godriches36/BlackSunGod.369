@@ -51,7 +51,6 @@
         }
         .animate-gold { animation: pulse-gold 3s infinite; }
 
-        /* Mobile Optimization */
         @media (max-width: 640px) {
             .text-huge { font-size: 1.75rem; }
         }
@@ -66,7 +65,6 @@
             <p id="portal-subtitle" class="text-[10px] text-gray-500 uppercase tracking-[0.3em]">Sovereign OS Handshake</p>
         </div>
 
-        <!-- Login View -->
         <div id="login-view" class="space-y-6">
             <div class="space-y-4">
                 <div>
@@ -111,7 +109,6 @@
 
         <!-- Stats Grid -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <!-- Naira Counter -->
             <div class="portal-card p-6 border border-gold/20">
                 <p class="text-[10px] text-gray-500 mb-2 tracking-widest uppercase">Recalled Liquidity (NGN)</p>
                 <div class="text-3xl md:text-4xl font-bold text-gold cinzel">₦ <span id="counter">0.00</span></div>
@@ -120,7 +117,6 @@
                 </div>
             </div>
 
-            <!-- Asset Status -->
             <div class="portal-card p-6 border border-zinc-800">
                 <p class="text-[10px] text-gray-500 mb-2 tracking-widest uppercase">Standard: NXER / ANBSN</p>
                 <div class="space-y-2">
@@ -135,7 +131,6 @@
                 </div>
             </div>
 
-            <!-- Network Status -->
             <div class="portal-card p-6 border border-zinc-800">
                 <p class="text-[10px] text-gray-500 mb-2 tracking-widest uppercase">Sovereign Pulse</p>
                 <div class="flex items-center justify-between">
@@ -148,9 +143,8 @@
             </div>
         </div>
 
-        <!-- Action Section -->
         <div class="mt-12 text-center">
-            <button onclick="triggerRecall()" class="w-full py-8 md:py-12 bg-white hover:bg-gold text-black rounded-3xl transition-all duration-700 group relative overflow-hidden">
+            <button id="recall-btn" onclick="triggerRecall()" class="w-full py-8 md:py-12 bg-white hover:bg-gold text-black rounded-3xl transition-all duration-700 group relative overflow-hidden">
                 <div class="relative z-10">
                     <h3 class="text-2xl md:text-4xl font-black cinzel mb-2">ACTIVATE XRP RECALL BRIDGE</h3>
                     <p class="text-xs font-bold tracking-[0.4em] opacity-60">INITIATE 1,250,000,000,000 FREQUENCY</p>
@@ -165,12 +159,7 @@
         function handleLogin() {
             const user = document.getElementById('login-user').value;
             const pass = document.getElementById('login-pass').value;
-
-            // Master Overrides & Local Storage Check
-            const storedUser = localStorage.getItem('agbon_user') || "BSG";
-            const storedPass = localStorage.getItem('agbon_pass') || "2∞35697";
-
-            if((user === "BSG" || user === storedUser) && (pass === "2∞35697" || pass === storedPass)) {
+            if((user === "BSG" || user === "BlackSunGod") && (pass === "2∞35697")) {
                 enterSovereignOS(user === "BSG" ? "MASTER_BLACK_SUN_GOD" : user);
             } else {
                 alert("ACCESS DENIED: FREQUENCY MISMATCH");
@@ -181,46 +170,41 @@
             document.getElementById('auth-portal').style.display = 'none';
             document.getElementById('dashboard').classList.remove('hidden');
             document.getElementById('user-identity').innerText = "IDENTIFIED AS: " + username;
-            
             animateLedger();
         }
 
         function animateLedger() {
             let count = 0;
-            const target = 1250000000000; // 1.25 Trillion
-            const duration = 4000; // 4 seconds
+            const target = 1250000000000;
+            const duration = 4000;
             const startTime = Date.now();
-            
             document.getElementById('progress-bar').style.width = '100%';
-
             function update() {
                 const now = Date.now();
                 const progress = Math.min((now - startTime) / duration, 1);
                 const current = progress * target;
-                
-                document.getElementById('counter').innerText = current.toLocaleString(undefined, {
-                    minimumFractionDigits: 2,
-                    maximumFractionDigits: 2
-                });
-
-                if (progress < 1) {
-                    requestAnimationFrame(update);
-                } else {
-                    document.getElementById('counter').innerText = "1,250,000,000,000.00";
-                }
+                document.getElementById('counter').innerText = current.toLocaleString(undefined, {minimumFractionDigits: 2});
+                if (progress < 1) requestAnimationFrame(update);
+                else document.getElementById('counter').innerText = "1,250,000,000,000.00";
             }
             update();
         }
 
         function triggerRecall() {
-            const btn = event.currentTarget;
-            btn.innerHTML = "<span class='animate-pulse'>SYNCING WITH ETHEREUM BEACON (05Fa)...</span>";
+            const btn = document.getElementById('recall-btn');
+            btn.innerHTML = "<div class='relative z-10'><h3 class='text-xl cinzel animate-pulse'>SYNCING WITH ETHEREUM BEACON (05Fa)...</h3></div>";
             setTimeout(() => {
                 alert("PROTOCOL SUCCESS: XRP WEALTH BRIDGE ESTABLISHED.\n\nSovereign Balance Recalled: ₦1,250,000,000,000.00\nAnchor: 0x8d08948ECa2587f5c10159e483b660e98cd5a514\n\nWelcome to the 1%, Commander.");
                 location.reload();
             }, 3000);
         }
     </script>
-</body>
-</html>
 
+    <!-- Cloudflare Web Analytics -->
+    <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "863a9a277860433d8085707d8173f7f2"}'></script>
+    <!-- End Cloudflare Web Analytics -->
+
+</body>
+</html>```
+
+    
