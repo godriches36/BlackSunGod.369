@@ -1,0 +1,46 @@
+name: Deploy Sovereign Command Center
+
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages-sovereign"
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      # Checkout @v4.1.1 (Security Pinned)
+      - name: Checkout 05Fa Root Logic
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11
+
+      - name: Sync Sovereign Metadata
+        run: |
+          echo "" >> index.html
+          echo "" >> index.html
+
+      # Configure-pages @v5.0.0 (Security Pinned)
+      - name: Setup Sovereign Pages
+        uses: actions/configure-pages@1adcd7d0cf3099971295447a24c5e3f4f13459e1
+
+      # Upload-pages-artifact @v3.0.1 (Security Pinned)
+      - name: Upload 05Fa Artifact
+        uses: actions/upload-pages-artifact@695874478d917e335dd7a6941d7f19bc5a4208fa
+        with:
+          path: '.'
+
+      # Deploy-pages @v4.0.4 (Security Pinned)
+      - name: Deploy to Global Frequency
+        id: deployment
+        uses: actions/deploy-pages@d6d9006c9a3418e202e825028f86708688402f04
