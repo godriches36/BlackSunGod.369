@@ -5,11 +5,11 @@
  */
 
 import React, { useState, useEffect } from 'react';
-import { ethers } from 'ethers';
+import { ethers } from 'ethers'; // Strict Ethers v6 implementation
 import { initializeApp } from 'firebase/app';
 import { getAuth, signInAnonymously } from 'firebase/auth';
 import { 
-  Crown, ShieldCheck, MapPin, Cpu, Zap, Lock, Bell, ShieldAlert, Fingerprint, Search, Terminal
+  Crown, ShieldCheck, MapPin, Lock, Fingerprint, Terminal
 } from 'lucide-react';
 
 // --- SOVEREIGN AUTHORITY CONFIGURATION ---
@@ -36,7 +36,6 @@ const auth = getAuth(app);
 export default function App() {
   const [balance, setBalance] = useState("0");
   const [securityStatus, setSecurityStatus] = useState("SCANNING_FOR_EXPLOITS");
-  const [aiDefensiveScore, setAiDefensiveScore] = useState(99.9);
   const [logs, setLogs] = useState([
     "[SYSTEM] Agbon OS 369 Core Initialized",
     "[SYSTEM] Sovereign Frequency Inversion Active"
@@ -50,9 +49,13 @@ export default function App() {
       }
       try {
         await signInAnonymously(auth);
-        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        
+        // Ethers v6 explicit BrowserProvider initialization protocol
+        const provider = new ethers.BrowserProvider(window.ethereum);
         const bal = await provider.getBalance(SOVEREIGN_ADDR);
-        setBalance(ethers.utils.formatEther(bal));
+        
+        // Ethers v6 explicit format utilities 
+        setBalance(ethers.formatEther(bal));
         
         setSecurityStatus("AGENT_SHIELD_ACTIVE");
         addLog(`[AUTH] Identity Verified: ${IDENTITY_PROOF.substring(0, 10)}...`);
@@ -160,5 +163,5 @@ export default function App() {
       </footer>
     </div>
   );
-}
-
+  }
+  
